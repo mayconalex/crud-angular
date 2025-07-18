@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { Tarefa } from '../models/tarefa';
 
@@ -9,30 +11,27 @@ export class TarefaService {
 
     constructor() { }
 
-    private tarefasSubject = new BehaviorSubject<Tarefa[]>([
-        { id: 1, descricao: 'Implementar o CRUD completo', prioridade: 5, concluida: false },
-        { id: 2, descricao: 'Estudar a arquitetura Standalone', prioridade: 4, concluida: true },
-    ]);
+    private readonly API_URL = 'http://localhost:3000/tarefas'
+    
+    private http = inject(HttpClient);
 
-    public tarefas$ = this.tarefasSubject.asObservable();
-
-    addTarefa(novaTarefa: Omit<Tarefa, 'id'>) {
-        const listaAtual = this.tarefasSubject.getValue();
-        const novaLista = [...listaAtual, { ...novaTarefa, id: Date.now() }];
-        this.tarefasSubject.next(novaLista);
+    getTarefas(): Observable<Tarefa[]> {
+        return this.http.get<Tarefa[]>(this.API_URL);
     }
 
-    updateTarefa(tarefaAtualizada: Tarefa) {
-        const listaAtual = this.tarefasSubject.getValue();
-        const novaLista = listaAtual.map(t =>
-            (t.id === tarefaAtualizada.id ? tarefaAtualizada : t)
-        );
-        this.tarefasSubject.next(novaLista);
+    addTarefa(novaTarefa: Omit<Tarefa, 'id'>): Observable<Tarefa> {
+        return this.http.post<Tarefa>(this.API_URL, novaTarefa);
     }
 
-    deleteTarefa(id: number) {
-        const listaAtual = this.tarefasSubject.getValue();
-        const novaLista = listaAtual.filter(t => t.id !== id);
-        this.tarefasSubject.next(novaLista);
+    updateTarefa(tarefaAtualizada: Tarefa): Observable<Tarefa> {
+        return this.http.put<Tarefa>(`${this.API_URL}/${tarefaAtualizada.id}`, tarefaAtualizada);
+    }
+
+    deleteTarefa(id: number): Observable<object> {
+        return this.http.delete(`${this.API_URL}/${id}`);
+    }
+
+    getTarefaById(id: number): Observable<Tarefa> {
+        return this.http.get<Tarefa>(`${this.API_URL}/${id}`);
     }
 }
