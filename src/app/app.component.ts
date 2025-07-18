@@ -1,4 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { TarefaService } from './services/tarefa.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Tarefa } from './models/tarefa';
@@ -17,6 +18,7 @@ import { RouterOutlet } from '@angular/router';
     selector: 'app-root',
     standalone: true,
     imports: [
+        CommonModule,
         ToolbarModule, ButtonModule, 
         ToastModule, ConfirmDialogModule,
         TarefaListComponent, TarefaFormComponent
@@ -29,18 +31,18 @@ export class AppComponent {
     private confirmationService = inject(ConfirmationService);
     private messageService = inject(MessageService);
 
-    public tarefas = this.tarefaService.tarefas;
-    public dialogVisivel = signal(false);
-    public tarefaAtual = signal<Tarefa | null>(null);
+    public tarefas$ = this.tarefaService.tarefas$;
+    public dialogVisivel: boolean = false;
+    public tarefaAtual: Tarefa | null = null;
 
     abrirDialogParaNova() {
-        this.tarefaAtual.set(null);
-        this.dialogVisivel.set(true);
+        this.tarefaAtual = null;
+        this.dialogVisivel = true;
     }
 
     abrirDialogParaEditar(tarefa: Tarefa) {
-        this.tarefaAtual.set(tarefa);
-        this.dialogVisivel.set(true);
+        this.tarefaAtual = tarefa;
+        this.dialogVisivel = true;
     }
 
     salvarTarefa(tarefa: Omit<Tarefa, 'id'> | Tarefa) {
@@ -51,7 +53,8 @@ export class AppComponent {
             this.tarefaService.addTarefa(tarefa as Omit<Tarefa, 'id'>);
             this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Tarefa adicionada!' });
         }
-            this.dialogVisivel.set(false);
+        
+        this.dialogVisivel = false;
     }
 
     removerTarefa(tarefa: Tarefa) {
