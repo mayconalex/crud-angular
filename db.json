@@ -1,0 +1,34 @@
+{
+  "tarefas": [
+    {
+      "id": "1",
+      "descricao": "Configurar o json-server",
+      "prioridade": 5,
+      "concluida": true
+    },
+    {
+      "id": "2",
+      "descricao": "Usando HttpClient e json-server",
+      "prioridade": 2,
+      "concluida": true
+    },
+    {
+      "id": null,
+      "descricao": "Refatoração Signals para RxJS",
+      "prioridade": 1,
+      "concluida": true
+    },
+    {
+      "id": null,
+      "descricao": "outra tarefa",
+      "prioridade": 1,
+      "concluida": false
+    },
+    {
+      "id": null,
+      "descricao": "Conclusão da tarefa",
+      "prioridade": 4,
+      "concluida": true
+    }
+  ]
+}

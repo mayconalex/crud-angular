@@ -12,16 +12,16 @@
 </p-toolbar>
 
 <app-tarefa-list
-  [tarefas]="tarefas()"
+  [tarefas]="(tarefas$ | async)!"
   (onEdit)="abrirDialogParaEditar($event)"
   (onDelete)="removerTarefa($event)">
 </app-tarefa-list>
 
 <app-tarefa-form
-  [visible]="dialogVisivel()"
-  [tarefa]="tarefaAtual()"
+  [visible]="dialogVisivel"
+  [tarefa]="tarefaAtual"
   (onSave)="salvarTarefa($event)"
-  (onCancel)="dialogVisivel.set(false)">
+  (onCancel)="dialogVisivel = false">
 </app-tarefa-form>
 
 <!-- <router-outlet /> -->
