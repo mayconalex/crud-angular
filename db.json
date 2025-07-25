@@ -1,27 +1,15 @@
 {
   "tarefas": [
     {
-      "id": "1",
+      "id": 1,
       "descricao": "Configurar o json-server",
       "prioridade": 5,
       "concluida": true
     },
     {
-      "id": "2",
+      "id": 2,
       "descricao": "Usando HttpClient e json-server",
       "prioridade": 2,
-      "concluida": true
-    },
-    {
-      "id": null,
-      "descricao": "teste",
-      "prioridade": 3,
-      "concluida": true
-    },
-    {
-      "id": null,
-      "descricao": "Cenoura",
-      "prioridade": 3,
       "concluida": true
     }
   ]
