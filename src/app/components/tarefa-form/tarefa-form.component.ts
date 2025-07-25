@@ -61,11 +61,10 @@ export class TarefaFormComponent implements OnInit {
         this.router.navigate(['/tarefas']);
       });
     } else {
-      const { id, ...novaTarefa } = tarefaData;
-      this.tarefaService.addTarefa(novaTarefa as any).subscribe(() => {
-        this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Tarefa adicionada!' });
-        this.router.navigate(['/tarefas']);
-      });
+        this.tarefaService.addTarefa(tarefaData as any).subscribe(() => {
+            this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Tarefa adicionada!' });
+            this.router.navigate(['/tarefas']);
+        });
     }
   }
 

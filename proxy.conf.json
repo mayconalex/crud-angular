@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "https://symmetrical-bassoon-9wpwp7w79rfppjg-3000.app.github.dev",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}

@@ -11,7 +11,7 @@ export class TarefaService {
 
     constructor() { }
 
-    private readonly API_URL = 'https://symmetrical-bassoon-9wpwp7w79rfppjg-3000.app.github.dev/'
+    private readonly API_URL = '/api/tarefas'
     
     private http = inject(HttpClient);
 

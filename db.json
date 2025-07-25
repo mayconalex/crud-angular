@@ -14,20 +14,14 @@
     },
     {
       "id": null,
-      "descricao": "Refatoração Signals para RxJS",
-      "prioridade": 1,
+      "descricao": "teste",
+      "prioridade": 3,
       "concluida": true
     },
     {
       "id": null,
-      "descricao": "outra tarefa",
-      "prioridade": 1,
-      "concluida": false
-    },
-    {
-      "id": null,
-      "descricao": "Conclusão da tarefa",
-      "prioridade": 4,
+      "descricao": "Cenoura",
+      "prioridade": 3,
       "concluida": true
     }
   ]
