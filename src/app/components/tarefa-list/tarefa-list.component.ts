@@ -1,7 +1,6 @@
-// src/app/components/tarefa-list/tarefa-list.component.ts
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router'; // <-- Importe RouterLink
+import { RouterLink } from '@angular/router';
 import { Tarefa } from '../../models/tarefa';
 import { TarefaService } from '../../services/tarefa.service';
 import { ConfirmationService, MessageService } from 'primeng/api';

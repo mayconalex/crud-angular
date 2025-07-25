@@ -1,4 +1,3 @@
-// src/app/app.routes.ts
 import { Routes } from '@angular/router';
 import { TarefaListComponent } from './components/tarefa-list/tarefa-list.component';
 import { TarefaFormComponent } from './components/tarefa-form/tarefa-form.component';

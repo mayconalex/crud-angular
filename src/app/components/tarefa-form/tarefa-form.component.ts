@@ -50,32 +50,24 @@ export class TarefaFormComponent implements OnInit {
     }
   }
 
-    // Dentro de TarefaFormComponent
-
     salvar() {
     if (this.tarefaForm.invalid) return;
 
     if (this.tarefaId) {
-        // Lógica de ATUALIZAÇÃO (nenhuma mudança necessária aqui)
         const tarefaData = this.tarefaForm.getRawValue();
         this.tarefaService.updateTarefa(tarefaData as any).subscribe(() => {
         this.messageService.add({ severity: 'info', summary: 'Sucesso', detail: 'Tarefa atualizada!' });
         this.router.navigate(['/tarefas']);
         });
     } else {
-        // Lógica de CRIAÇÃO (A CORREÇÃO ESTÁ AQUI)
-
         const formValue = this.tarefaForm.getRawValue();
 
-        // Criamos um novo objeto 'novaTarefa' garantindo os tipos corretos.
-        // O FormBuilder pode retornar strings para números, então forçamos a conversão.
         const novaTarefa = {
         descricao: formValue.descricao!,
-        prioridade: Number(formValue.prioridade!), // Garante que a prioridade é um número
-        concluida: Boolean(formValue.concluida!)  // Garante que 'concluida' é um booleano
+        prioridade: Number(formValue.prioridade!),
+        concluida: Boolean(formValue.concluida!)
         };
 
-        // Enviamos este objeto limpo e com tipos garantidos para o serviço.
         this.tarefaService.addTarefa(novaTarefa).subscribe(() => {
             this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Tarefa adicionada!' });
             this.router.navigate(['/tarefas']);
