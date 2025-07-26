@@ -1,7 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { BehaviorSubject } from 'rxjs';
+import { Observable, switchMap, map } from 'rxjs';
 import { Tarefa } from '../models/tarefa';
 
 @Injectable({
@@ -11,7 +10,7 @@ export class TarefaService {
 
     constructor() { }
 
-    private readonly API_URL = 'http://localhost:3000/tarefas'
+    private readonly API_URL = '/api/tarefas'
     
     private http = inject(HttpClient);
 
@@ -19,8 +18,21 @@ export class TarefaService {
         return this.http.get<Tarefa[]>(this.API_URL);
     }
 
-    addTarefa(novaTarefa: Omit<Tarefa, 'id'>): Observable<Tarefa> {
-        return this.http.post<Tarefa>(this.API_URL, novaTarefa);
+    addTarefa(novaTarefaData: Omit<Tarefa, 'id'>): Observable<Tarefa> {
+        return this.getTarefas().pipe(
+            map(tarefas => {
+                const maxId = tarefas.reduce((max, t) => t.id > max ? t.id : max, 0);
+
+                const novaTarefaComId: Tarefa = {
+                    ...novaTarefaData,
+                    id: maxId + 1
+                };
+                return novaTarefaComId;
+            }),
+            switchMap(tarefaParaSalvar => {
+                return this.http.post<Tarefa>(this.API_URL, tarefaParaSalvar);
+            })
+        );
     }
 
     updateTarefa(tarefaAtualizada: Tarefa): Observable<Tarefa> {

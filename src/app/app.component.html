@@ -6,22 +6,6 @@
     <i class="pi pi-check-square" style="font-size: 1.5rem; margin-right: 0.5rem;"></i>
     <span class="font-bold text-xl">Gerenciador de Tarefas</span>
   </div>
-  <div class="p-toolbar-group-end">
-    <p-button label="Nova Tarefa" icon="pi pi-plus" (click)="abrirDialogParaNova()"></p-button>
-  </div>
 </p-toolbar>
 
-<app-tarefa-list
-  [tarefas]="(tarefas$ | async)!"
-  (onEdit)="abrirDialogParaEditar($event)"
-  (onDelete)="removerTarefa($event)">
-</app-tarefa-list>
-
-<app-tarefa-form
-  [visible]="dialogVisivel"
-  [tarefa]="tarefaAtual"
-  (onSave)="salvarTarefa($event)"
-  (onCancel)="dialogVisivel = false">
-</app-tarefa-form>
-
-<!-- <router-outlet /> -->
+<router-outlet />
