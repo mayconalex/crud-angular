@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://symmetrical-bassoon-9wpwp7w79rfppjg-3000.app.github.dev",
+    "target": "http://localhost:3000", // http://localhost:3000
     "secure": false,
     "changeOrigin": true,
     "pathRewrite": {

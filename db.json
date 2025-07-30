@@ -11,18 +11,6 @@
       "descricao": "Usando HttpClient e json-server",
       "prioridade": 2,
       "concluida": true
-    },
-    {
-      "id": "21",
-      "descricao": "asfsadsadsa",
-      "prioridade": 3,
-      "concluida": false
-    },
-    {
-      "id": "211",
-      "descricao": "Cenouraaaaa",
-      "prioridade": 3,
-      "concluida": true
     }
   ]
 }
